@@ -38,9 +38,6 @@ Below is a brief illustration of the Instruction Fetch stage. It is by no means 
 ```
 public void performIF ()
 {
-{
-{
-}
 Simulator . getEventQueue ( ) . addEvent ( new MemoryReadEvent(
 Clock . getCurrentTime () + Configuration . mainMemoryLatency , this ,
 containingProcessor .getMainMemory() ,
@@ -49,36 +46,30 @@ containingProcessor . getRegisterFile (). getProgramCounter ()));
   if(IF EnableLatch.isIF busy())
   return ;
 IF EnableLatch.setIF busy(true);
-  } }
+  }
 @Override
 public void handleEvent(Event e) {
 if (IF OF Latch.isOF busy())
 {
-}
 else
 {
    e.setEventTime(Clock.getCurrentTime() + 1);
+}
 Simulator . getEventQueue ( ) . addEvent ( e ) ;
 MemoryResponseEvent event = (MemoryResponseEvent) IF OF Latch.setInstruction(event.getValue());
-2
-e ;
   
 IF OF Latch.setOF enable(true);
 IF EnableLatch.setIF busy(false );
-     } }
+  
 Below is the code snippet from the MainMemory.java class.
 @Override
 public void handleEvent(Event e) {
 if (e.getEventType() == EventType.MemoryRead)
 {
-} }
-MemoryReadEvent e v e n t = ( MemoryReadEvent ) Simulator . getEventQueue ( ) . addEvent (
-e ;
-new MemoryResponseEvent(
-Clock . getCurrentTime () ,
-this ,
-event . getRequestingElement () ,
-getWord ( event . getAddressToReadFrom ( ) ) ) ) ;
+	MemoryReadEvent e v e n t = ( MemoryReadEvent ) Simulator . getEventQueue ( ) . addEvent (new MemoryResponseEvent(Clock. getCurrentTime () ,this ,event . getRequestingElement () ,getWord ( event . getAddressToReadFrom ( ) ) ) ) ;
+}
+}
+}
 ```
 # Functionalities to be Implemented
 * Modeling the latency of the main memory
@@ -86,9 +77,9 @@ getWord ( event . getAddressToReadFrom ( ) ) ) ) ;
 * Modeling the latencies of different functional units: ALU, multiplier, di- vider, etc.
 
 ## Work Done
-# A zip of the source files. They have to pass the test cases given for the previous assignment.
-# A report that contains a table with
-	# the number of cycles taken by each benchmark program,
-	# the throughput in terms of instructions per cycle.
-	# Comment on your observations. Correlate with the nature of the bench- marks.
+* A zip of the source files. They have to pass the test cases given for the previous assignment.
+* A report that contains a table with
+	* the number of cycles taken by each benchmark program,
+	* the throughput in terms of instructions per cycle.
+	* Comment on your observations. Correlate with the nature of the bench- marks.
 
